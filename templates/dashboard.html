@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4>Welcome, {{ user.username }}!</h4>
+            </div>
+            <div class="card-body">
+                <p><strong>Role:</strong> {{ user.role|title }}</p>
+                <p><strong>Email:</strong> {{ user.email }}</p>
+                <p><strong>Member since:</strong> {{ user.created_at.strftime('%Y-%m-%d') }}</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-8">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4>Quick Actions</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <a href="{{ url_for('chat') }}" class="btn btn-primary w-100">
+                            <i class="fas fa-comments"></i> Chat with AI
+                        </a>
+                    </div>
+                    {% if user.role in ['admin', 'faculty'] %}
+                    <div class="col-md-6 mb-3">
+                        <a href="{{ url_for('upload') }}" class="btn btn-success w-100">
+                            <i class="fas fa-upload"></i> Upload Document
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        {% if user.role == 'admin' %}
+        <div class="card">
+            <div class="card-header">
+                <h4>System Statistics</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card bg-primary text-white">
+                            <div class="card-body text-center">
+                                <h5>Total Users</h5>
+                                <h3>{{ users|length }}</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card bg-success text-white">
+                            <div class="card-body text-center">
+                                <h5>Total Documents</h5>
+                                <h3>{{ documents|length }}</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card bg-info text-white">
+                            <div class="card-body text-center">
+                                <h5>Total Chats</h5>
+                                <h3>{{ chat_history|length }}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %} 

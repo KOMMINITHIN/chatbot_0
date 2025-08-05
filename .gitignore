@@ -1,0 +1,37 @@
+# Bytecode and cache
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+venv/
+
+# Uploads and generated files
+uploads/
+vector_store/
+
+# Environment or system-specific
+.DS_Store
+Thumbs.db
+
+# Python tooling
+*.log
+*.sqlite3
+*.db
+*.pkl
+
+# Editor folders (optional)
+.vscode/
+
+# Python packaging
+*.egg-info/
+dist/
+build/
+
+# Jupyter Notebooks (if any)
+.ipynb_checkpoints/
+
+# Ignore reports/output if generated
+evaluation_report.json
+
+# Optional: Ignore init/test/setup scripts (if generated each time)
+

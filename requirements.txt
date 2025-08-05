@@ -1,0 +1,14 @@
+flask==2.3.3
+werkzeug==2.3.7
+flask-sqlalchemy==3.0.5
+flask-login==0.6.2
+faiss-cpu==1.7.4
+langchain==0.0.352
+langchain-community==0.0.19
+python-dotenv==1.0.0
+sentence-transformers==2.2.2
+huggingface-hub==0.16.4
+transformers==4.32.0
+PyPDF2==3.0.1
+python-docx==1.0.1
+numpy==1.24.3 

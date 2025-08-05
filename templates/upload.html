@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="text-center">Upload Document</h3>
+            </div>
+            <div class="card-body">
+                <form method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Document Title</label>
+                        <input type="text" class="form-control" id="title" name="title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="file" class="form-label">Select Document</label>
+                        <input type="file" class="form-control" id="file" name="file" accept=".pdf,.docx" required>
+                        <div class="form-text">Supported formats: PDF, DOCX</div>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Upload</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        {% if documents %}
+        <div class="card mt-4">
+            <div class="card-header">
+                <h4>Your Uploaded Documents</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>File Type</th>
+                                <th>Upload Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for doc in documents %}
+                            <tr>
+                                <td>{{ doc.title }}</td>
+                                <td>{{ doc.file_type }}</td>
+                                <td>{{ doc.upload_date.strftime('%Y-%m-%d %H:%M') }}</td>
+                                <td>
+                                    {% if doc.is_processed %}
+                                    <span class="badge bg-success">Processed</span>
+                                    {% else %}
+                                    <span class="badge bg-warning">Processing</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %} 
